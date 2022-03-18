@@ -1,13 +1,16 @@
 package org.sqli.authentification.entitie;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 import org.sqli.authentification.dao.User;
 
 public interface UserRepository extends JpaRepository<User , Integer> {
     //User findUser(User user);
-    public User findUserByLoginAndPassword(String login ,String password);
+     User findUserByLoginAndPassword(String login ,String password);
 
+
+     User deleteUserByLogin(String login);
+
+     boolean findUserByLogin(String login);
 
 
 }

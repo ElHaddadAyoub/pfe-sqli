@@ -30,10 +30,30 @@ public class UserService {
 
 
     //method save user
-
     public User createAccount(User user){
-        return userRepository.save(user);
+
+        User us =  userRepository.save(user);
+
+        return us;
     }
+
+
+
+
+    //Supperesion compte :
+    public void deleteAccount(String login){
+        if(userRepository.findUserByLogin(login)){
+            User us = userRepository.deleteUserByLogin(login);
+
+        }else{
+            throw new UserNotFoundException("Login (login in input) is not found");
+        }
+
+
+
+    }
+
+
 
 
 

@@ -2,7 +2,7 @@ package org.sqli.authentification.dao;
 
 import javax.persistence.*;
 
-@Entity(name = "user")
+@Entity(name = "USER")
 
 public class User {
 
