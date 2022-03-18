@@ -25,7 +25,13 @@ public class User {
     @JoinColumn(name = "GROUP_ID" ,nullable = false)
     private Group group;
 
+    public Group getGroup() {
+        return group;
+    }
 
+    public void setGroup(Group group) {
+        this.group = group;
+    }
 
     public User() {
     }
