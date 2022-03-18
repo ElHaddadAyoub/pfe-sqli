@@ -6,7 +6,7 @@ import org.sqli.authentification.dao.User;
 
 public interface UserRepository extends JpaRepository<User , Integer> {
     //User findUser(User user);
-    User findUserByLoginAndPassword(String login ,String password);
+    public User findUserByLoginAndPassword(String login ,String password);
 
 
 

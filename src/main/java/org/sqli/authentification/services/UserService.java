@@ -17,6 +17,7 @@ public class UserService {
     //method 1 autentification best case
     public User authUserbyLoginAndPassword(User user){
 
+
         User us = userRepository.findUserByLoginAndPassword(user.getLogin() , user.getPassword());
         if(us != null){
             return us;
@@ -31,7 +32,6 @@ public class UserService {
     //method save user
 
     public User createAccount(User user){
-
         return userRepository.save(user);
     }
 
