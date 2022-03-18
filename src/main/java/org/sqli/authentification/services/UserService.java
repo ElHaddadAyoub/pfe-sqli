@@ -19,7 +19,10 @@ public class UserService {
 
 
         User us = userRepository.findUserByLoginAndPassword(user.getLogin() , user.getPassword());
-        if(us != null){
+        if(us != null ){
+            if(!us.getEnabled()){
+                throw new UserNotFoundException("User Disabled");
+            }
             return us;
         }
         else{
