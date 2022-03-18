@@ -2,14 +2,16 @@ package org.sqli.authentification.dao;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "group")
+@Entity(name = "user_group")
+
 public class Group {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id;
+    @Column(name = "ID")
+    private Long Id;
+    @Column(name = "NAME")
     private String name;
 
     @OneToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER , mappedBy = "group")
@@ -18,16 +20,16 @@ public class Group {
     public Group() {
     }
 
-    public Group(int id, String name) {
+    public Group(Long id, String name) {
         Id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public Long getId() {
         return Id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         Id = id;
     }
 

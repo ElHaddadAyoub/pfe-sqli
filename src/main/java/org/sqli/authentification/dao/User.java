@@ -2,20 +2,27 @@ package org.sqli.authentification.dao;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "user")
+@Entity(name = "user")
+
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "ID")
+    private Integer id;
+    @Column(name = "LOGIN")
     private String login;
+    @Column(name = "PASSWORD")
     private String password;
+    @Column(name = "ENABLED")
     private Boolean enabled;
+
+
+    @Column(name = "LOGINATTEMPTS" , nullable = true)
     private int loginAttempts;
 
     @OneToOne( fetch = FetchType.EAGER)
-    @JoinColumn(name = "group_id" ,nullable = false)
+    @JoinColumn(name = "GROUP_ID" ,nullable = false)
     private Group group;
 
 
@@ -23,7 +30,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, String login, String password, Boolean enabled, int loginAttempts) {
+    public User(Integer id, String login, String password, Boolean enabled, int loginAttempts) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -31,11 +38,11 @@ public class User {
         this.loginAttempts = loginAttempts;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -70,4 +77,6 @@ public class User {
     public void setLoginAttempts(int loginAttempts) {
         this.loginAttempts = loginAttempts;
     }
+
+
 }
