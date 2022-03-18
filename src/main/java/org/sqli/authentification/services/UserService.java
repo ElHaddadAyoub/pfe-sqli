@@ -41,16 +41,14 @@ public class UserService {
 
         if(user.getGroup().getId() == groupRepository.getGroupById(Math.toIntExact(user.getGroup().getId()))){
             User us =  userRepository.save(user);
+            return us;
         }else{
-            throw new UserNotFoundException("Group (group in input) is not valid");
+             throw new UserNotFoundException("Group (group in input) is not valid");
         }
         //User us =  userRepository.save(user);
 
         //Group gr = groupRepository.getGroupById(Math.toIntExact(user.getGroup().getId()));
 
-
-
-        return us;
     }
 
 
