@@ -1,12 +1,12 @@
 package org.sqli.authentification.exceptions;
 
 
-public class UsertNotFoundExceptionHandler {
+class UserNotFoundExceptionHandler {
     private int id;
 
 
 
-    public UsertNotFoundExceptionHandler(int id) {
+    public UserNotFoundExceptionHandler(int id) {
         this.id = id;
     }
 

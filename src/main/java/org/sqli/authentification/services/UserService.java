@@ -1,6 +1,10 @@
 package org.sqli.authentification.services;
 
+import com.fasterxml.jackson.databind.ser.FilterProvider;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Service;
 import org.sqli.authentification.dao.Group;
 import org.sqli.authentification.dao.User;
@@ -21,8 +25,22 @@ public class UserService {
     //method 1 autentification best case
     public User authUserbyLoginAndPassword(User user){
 
+/*
+        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("login");
 
+
+        FilterProvider filters = new SimpleFilterProvider().addFilter("SomeBeanFilter", filter);
         User us = userRepository.findUserByLoginAndPassword(user.getLogin() , user.getPassword());
+        MappingJacksonValue user = new MappingJacksonValue(us);
+        //User us = userRepository.findUserByLoginAndPassword(user.getLogin() , user.getPassword());
+
+        mapping.setFilters(filters);
+
+        return user;
+*/
+        User us = userRepository.findUserByLoginAndPassword(user.getLogin() , user.getPassword());
+        return us;
+        /*
         if(us != null ){
             if(!us.getEnabled()){
                 throw new UserNotFoundException("User Disabled");
@@ -32,13 +50,17 @@ public class UserService {
         else{
             throw new UserNotFoundException("Authentification error");
         }
+        */
+
+
     }
 
 
 
     //method save user
     public User createAccount(User user){
-
+        return null;
+/*
         if(user.getGroup().getId() == groupRepository.getGroupById(Math.toIntExact(user.getGroup().getId()))){
             User us =  userRepository.save(user);
             return us;
@@ -48,7 +70,7 @@ public class UserService {
         //User us =  userRepository.save(user);
 
         //Group gr = groupRepository.getGroupById(Math.toIntExact(user.getGroup().getId()));
-
+*/
     }
 
 

@@ -13,8 +13,8 @@ public class Group {
     private Long Id;
     @Column(name = "NAME")
     private String name;
-
-    @OneToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER , mappedBy = "group")
+/*
+    @OneToOne( mappedBy = "group")
     private User user;
 
     public User getUser() {
@@ -24,6 +24,8 @@ public class Group {
     public void setUser(User user) {
         this.user = user;
     }
+
+ */
 
     public Group() {
     }
