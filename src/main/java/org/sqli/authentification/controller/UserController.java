@@ -15,8 +15,10 @@ public class UserController {
     public UserService userService;
 
     @PostMapping("/auth")
-    public User authUser(@RequestBody User user){
-        return userService.authUserbyLoginAndPassword(user);
+    public ResponseEntity<?> authUser(@RequestBody User user){
+         User user1 = userService.authUserbyLoginAndPassword(user);
+        return new ResponseEntity<User>(user1 , HttpStatus.OK);
+
     }
 
 

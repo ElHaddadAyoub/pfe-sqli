@@ -1,18 +1,11 @@
 package org.sqli.authentification.services;
 
-import com.fasterxml.jackson.databind.ser.FilterProvider;
-import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
-import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Service;
-import org.sqli.authentification.dao.Group;
 import org.sqli.authentification.dao.User;
 import org.sqli.authentification.entitie.GroupRepository;
 import org.sqli.authentification.entitie.UserRepository;
-import org.sqli.authentification.exceptions.UserNotFoundException;
-
-import java.util.Optional;
+import org.sqli.authentification.exceptions.AuthException;
 
 @Service
 public class UserService {
@@ -25,33 +18,13 @@ public class UserService {
     //method 1 autentification best case
     public User authUserbyLoginAndPassword(User user){
 
-/*
-        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("login");
-
-
-        FilterProvider filters = new SimpleFilterProvider().addFilter("SomeBeanFilter", filter);
         User us = userRepository.findUserByLoginAndPassword(user.getLogin() , user.getPassword());
-        MappingJacksonValue user = new MappingJacksonValue(us);
-        //User us = userRepository.findUserByLoginAndPassword(user.getLogin() , user.getPassword());
-
-        mapping.setFilters(filters);
-
-        return user;
-*/
-        User us = userRepository.findUserByLoginAndPassword(user.getLogin() , user.getPassword());
-        return us;
-        /*
-        if(us != null ){
-            if(!us.getEnabled()){
-                throw new UserNotFoundException("User Disabled");
-            }
-            return us;
+        if(us == null){
+            throw new AuthException("Error : Authentication error");
         }
         else{
-            throw new UserNotFoundException("Authentification error");
+            return us;
         }
-        */
-
 
     }
 
@@ -82,7 +55,7 @@ public class UserService {
             User us = userRepository.deleteUserByLogin(login);
 
         }else{
-            throw new UserNotFoundException("Login (login in input) is not found");
+            //throw new UserNotFoundException("Login (login in input) is not found");
         }
 
 
