@@ -21,6 +21,8 @@ public class UserService {
         User us = userRepository.findUserByLoginAndPassword(user.getLogin() , user.getPassword());
         if(us == null){
             throw new AuthException("Error : Authentication error");
+        }else if(us.getEnabled()== false){
+            throw new AuthException("error :User disabled");
         }
         else{
             return us;
