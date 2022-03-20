@@ -1,8 +1,5 @@
 package org.sqli.authentification.dao;
 
-import com.fasterxml.jackson.annotation.JsonFilter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -14,7 +11,7 @@ public class User {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Integer id;
     @Column(name = "LOGIN")
@@ -23,14 +20,14 @@ public class User {
     @JsonProperty( value = "password", access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     @JsonProperty( value = "enabled", access = JsonProperty.Access.WRITE_ONLY)
-    @Column(name = "ENABLED")
+    @Column(name = "ENABLED",nullable=true)
     private Boolean enabled;
     @Column(name = "LOGINATTEMPTS" , nullable = true)
     @JsonProperty( value = "loginAttempts", access = JsonProperty.Access.WRITE_ONLY)
     private int loginAttempts;
 
-    @OneToOne( cascade = CascadeType.ALL)
-    @JoinColumn(name = "GROUP_ID" )
+    @OneToOne()
+    @JoinColumn(name = "GROUP_ID" ,nullable=true)
     private Group group;
 
     public Group getGroup() {

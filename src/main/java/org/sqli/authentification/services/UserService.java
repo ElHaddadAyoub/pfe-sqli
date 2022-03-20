@@ -2,6 +2,7 @@ package org.sqli.authentification.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.sqli.authentification.dao.Group;
 import org.sqli.authentification.dao.User;
 import org.sqli.authentification.entitie.GroupRepository;
 import org.sqli.authentification.entitie.UserRepository;
@@ -48,18 +49,15 @@ public class UserService {
 
     //method save user
     public User createAccount(User user){
-        return null;
-/*
-        if(user.getGroup().getId() == groupRepository.getGroupById(Math.toIntExact(user.getGroup().getId()))){
-            User us =  userRepository.save(user);
-            return us;
-        }else{
-             throw new UserNotFoundException("Group (group in input) is not valid");
-        }
-        //User us =  userRepository.save(user);
 
-        //Group gr = groupRepository.getGroupById(Math.toIntExact(user.getGroup().getId()));
-*/
+        //userRepository.save(user);
+        //Group grp = groupRepository.getGroupById(user.getGroup().getId());
+        //user.setGroup(grp);
+        user.setLoginAttempts(0);
+        user.setEnabled(true);
+        User us = userRepository.save(user);
+        return us;
+
     }
 
 

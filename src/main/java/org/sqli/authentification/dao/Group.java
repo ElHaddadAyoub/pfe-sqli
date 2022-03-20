@@ -1,5 +1,7 @@
 package org.sqli.authentification.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity(name = "USER_GROUP")
@@ -13,8 +15,11 @@ public class Group {
     private Long Id;
     @Column(name = "NAME")
     private String name;
-/*
-    @OneToOne( mappedBy = "group")
+
+    //@OneToOne( mappedBy = "group",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
+    @Transient
+    @JsonIgnore
     private User user;
 
     public User getUser() {
@@ -24,7 +29,7 @@ public class Group {
     public void setUser(User user) {
         this.user = user;
     }
-
+    /*/*
  */
 
     public Group() {

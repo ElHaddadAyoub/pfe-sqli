@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import org.sqli.authentification.dao.User;
 import org.sqli.authentification.services.UserService;
 
+import javax.transaction.Transactional;
+
 @RestController
 public class UserController {
 
@@ -24,8 +26,9 @@ public class UserController {
 
 
     @PostMapping("/user")
-    public User saveUser(@RequestBody User user){
-        return userService.createAccount(user);
+    public ResponseEntity<?> saveUser(@RequestBody User user){
+       User createdUser =  userService.createAccount(user);
+        return new ResponseEntity<User>(createdUser , HttpStatus.OK);
     }
 
 /*
