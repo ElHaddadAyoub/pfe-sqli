@@ -56,10 +56,19 @@ public class UserService {
         //user.setGroup(grp);
         user.setLoginAttempts(0);
         user.setEnabled(true);
+        //test group if exist
         int id  = user.getGroup().getId();
         Group grp = groupRepository.findGroupById(id);
+
+
+        //test login if exist in db with double
+        String loginUs = user.getLogin();
+        User userLogi = userRepository.findUserByLogin(loginUs);
         if(grp==null){
             throw new AuthException("error :Group (group in input) is not valid");
+        }
+        else if(userLogi != null){
+            throw new AuthException("error :Login (login in input) is not valid");
         }
         User us = userRepository.save(user);
         return us;
