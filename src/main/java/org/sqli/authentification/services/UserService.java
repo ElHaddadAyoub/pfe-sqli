@@ -14,6 +14,7 @@ public class UserService {
     @Autowired
     public UserRepository userRepository;
 
+    @Autowired
     public GroupRepository groupRepository;
 
     //method 1 autentification best case
@@ -55,6 +56,11 @@ public class UserService {
         //user.setGroup(grp);
         user.setLoginAttempts(0);
         user.setEnabled(true);
+        int id  = user.getGroup().getId();
+        Group grp = groupRepository.findGroupById(id);
+        if(grp==null){
+            throw new AuthException("error :Group (group in input) is not valid");
+        }
         User us = userRepository.save(user);
         return us;
 
