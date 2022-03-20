@@ -51,9 +51,6 @@ public class UserService {
     //method save user
     public User createAccount(User user){
 
-        //userRepository.save(user);
-        //Group grp = groupRepository.getGroupById(user.getGroup().getId());
-        //user.setGroup(grp);
         user.setLoginAttempts(0);
         user.setEnabled(true);
         //test group if exist
@@ -79,19 +76,20 @@ public class UserService {
 
 
     //Supperesion compte :
-    /*
-    public void deleteAccount(String login){
-        if(userRepository.findUserByLogin(login)){
-            User us = userRepository.deleteUserByLogin(login);
 
+    public void deleteAccount(String login){
+        User userTest = userRepository.findUserByLogin(login);
+        if(userTest != null){
+            userRepository.delete(userTest);
+            //throw new AuthException("success : Login (login in input) is deleted");
         }else{
-            //throw new UserNotFoundException("Login (login in input) is not found");
+            throw new AuthException("error :Group (group in input) is not valid");
         }
 
 
 
     }
-*/
+
 
 
 

@@ -1,14 +1,11 @@
 package org.sqli.authentification.controller;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.sqli.authentification.dao.User;
 import org.sqli.authentification.services.UserService;
-
-import javax.transaction.Transactional;
 
 @RestController
 public class UserController {
@@ -31,13 +28,13 @@ public class UserController {
         return new ResponseEntity<User>(createdUser , HttpStatus.OK);
     }
 
-/*
-    @DeleteMapping("/User/{login}")
-    public ResponseEntity<?> deleteCompte(@PathVariable String login){
+
+    @DeleteMapping("/user/{login}")
+    public ResponseEntity<String> deleteCompte(@PathVariable String login){
         userService.deleteAccount(login);
-        return new ResponseEntity<String>("Login (in input) is deleted " , HttpStatus.OK);
+        return new ResponseEntity<String>("success : Login (login in input) is deleted" , HttpStatus.OK);
     }
-*/
+
 
 
 
