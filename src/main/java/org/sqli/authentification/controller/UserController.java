@@ -28,12 +28,13 @@ public class UserController {
         return userService.createAccount(user);
     }
 
-
+/*
     @DeleteMapping("/User/{login}")
     public ResponseEntity<?> deleteCompte(@PathVariable String login){
         userService.deleteAccount(login);
         return new ResponseEntity<String>("Login (in input) is deleted " , HttpStatus.OK);
     }
+*/
 
 
 
