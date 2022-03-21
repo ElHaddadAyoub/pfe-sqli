@@ -1,4 +1,6 @@
-package org.sqli.authentification.dao;
+package org.sqli.authentification.entitie;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -10,11 +12,14 @@ public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private Long Id;
+    private Integer id;
     @Column(name = "NAME")
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER , mappedBy = "group")
+    //@OneToOne( mappedBy = "group",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
+    @Transient
+    @JsonIgnore
     private User user;
 
     public User getUser() {
@@ -24,21 +29,23 @@ public class Group {
     public void setUser(User user) {
         this.user = user;
     }
+    /*/*
+ */
 
     public Group() {
     }
 
-    public Group(Long id, String name) {
-        Id = id;
+    public Group(int id, String name) {
+        this.id = id;
         this.name = name;
     }
 
-    public Long getId() {
-        return Id;
+    public int getId() {
+        return id;
     }
 
-    public void setId(Long id) {
-        Id = id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

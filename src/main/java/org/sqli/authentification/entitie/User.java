@@ -1,10 +1,14 @@
-package org.sqli.authentification.dao;
+package org.sqli.authentification.entitie;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 
 @Entity(name = "USER")
 
 public class User {
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,16 +17,21 @@ public class User {
     @Column(name = "LOGIN")
     private String login;
     @Column(name = "PASSWORD")
+    @JsonProperty( value = "password", access = JsonProperty.Access.WRITE_ONLY)
     private String password;
-    @Column(name = "ENABLED")
+
+    //@JsonProperty( value = "passwordConfirmation", access = JsonProperty.Access.WRITE_ONLY)
+    //private String passwordConfirmation;
+    @JsonProperty( value = "enabled", access = JsonProperty.Access.WRITE_ONLY)
+    @Column(name = "ENABLED",nullable=true)
     private Boolean enabled;
 
-
     @Column(name = "LOGINATTEMPTS" , nullable = true)
+    @JsonProperty( value = "loginAttempts", access = JsonProperty.Access.WRITE_ONLY)
     private int loginAttempts;
 
-    @OneToOne( fetch = FetchType.EAGER)
-    @JoinColumn(name = "GROUP_ID" ,nullable = false)
+    @OneToOne()
+    @JoinColumn(name = "GROUP_ID" ,nullable=true)
     private Group group;
 
     public Group getGroup() {
@@ -67,6 +76,17 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+/*
+    public String getPasswordConfirmation() {
+        return passwordConfirmation;
+    }
+
+    public void setPasswordConfirmation(String passwordConfirmation) {
+        this.passwordConfirmation = passwordConfirmation;
+    }
+
+ */
+
 
     public Boolean getEnabled() {
         return enabled;
