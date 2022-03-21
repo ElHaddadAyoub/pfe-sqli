@@ -1,7 +1,7 @@
-package org.sqli.authentification.entitie;
+package org.sqli.authentification.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.sqli.authentification.dao.Group;
+import org.sqli.authentification.entitie.Group;
 
 public interface GroupRepository extends JpaRepository<Group, Integer> {
    // Long getGroupById(int toIntExact);

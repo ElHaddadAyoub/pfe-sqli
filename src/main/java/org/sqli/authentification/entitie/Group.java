@@ -1,4 +1,4 @@
-package org.sqli.authentification.dao;
+package org.sqli.authentification.entitie;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
